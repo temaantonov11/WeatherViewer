@@ -23,24 +23,24 @@ public class MainActivity extends AppCompatActivity {
 
     private Button viewWeather;
 
-    String[] times = {"Сегодня", "Завтра", "3 дня", "10 дней", "2 недели"};
-    String[] cities = { "Нижний Новгород", "Москва", "Санкт-Петербург", "Казань", "Екатеринбург" };
-    Map<String, String> cityToUrlCode = new HashMap<>() {{
+    private String[] times = {"Сегодня", "Завтра", "3 дня", "10 дней", "2 недели"};
+    private String[] cities = { "Нижний Новгород", "Москва", "Санкт-Петербург", "Казань", "Екатеринбург" };
+    private Map<String, String> cityToUrlCode = new HashMap<>() {{
        put("Нижний Новгород", "weather-nizhny-novgorod-4355");
        put("Москва", "weather-moscow-4368");
        put("Санкт-Петербург", "weather-sankt-peterburg-4079");
        put("Казань", "weather-kazan-4364");
        put("Екатеринбург", "weather-yekaterinburg-4517");
     }};
-    Map<String, String> timeToUrlCode = new HashMap<>() {{
+    private Map<String, String> timeToUrlCode = new HashMap<>() {{
        put("Сегодня", "");
        put("Завтра", "tomorrow");
        put("3 дня", "3-days");
        put("10 дней", "10-days");
        put("2 недели", "2-weeks");
     }};
-    String selectedCity;
-    String selectedTime;
+    private String selectedCity = cities[0];
+    private String selectedTime = times[0];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
                 String url = "https://www.gismeteo.ru/" + cityToUrlCode.get(selectedCity) + "/" + timeToUrlCode.get(selectedTime);
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 startActivity(intent);
-//                Toast.makeText(MainActivity.this, selectedCity != null ? selectedCity : "Значение не выбрано", Toast.LENGTH_SHORT).show();
             }
         });
     }
