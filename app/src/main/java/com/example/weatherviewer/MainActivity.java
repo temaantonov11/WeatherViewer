@@ -8,7 +8,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,18 +20,16 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button viewWeather;
-
-    private String[] times = {"Сегодня", "Завтра", "3 дня", "10 дней", "2 недели"};
-    private String[] cities = { "Нижний Новгород", "Москва", "Санкт-Петербург", "Казань", "Екатеринбург" };
-    private Map<String, String> cityToUrlCode = new HashMap<>() {{
+    private final String[] times = {"Сегодня", "Завтра", "3 дня", "10 дней", "2 недели"};
+    private final String[] cities = { "Нижний Новгород", "Москва", "Санкт-Петербург", "Казань", "Екатеринбург" };
+    private final Map<String, String> cityToUrlCode = new HashMap<>() {{
        put("Нижний Новгород", "weather-nizhny-novgorod-4355");
        put("Москва", "weather-moscow-4368");
        put("Санкт-Петербург", "weather-sankt-peterburg-4079");
        put("Казань", "weather-kazan-4364");
        put("Екатеринбург", "weather-yekaterinburg-4517");
     }};
-    private Map<String, String> timeToUrlCode = new HashMap<>() {{
+    private final Map<String, String> timeToUrlCode = new HashMap<>() {{
        put("Сегодня", "");
        put("Завтра", "tomorrow");
        put("3 дня", "3-days");
@@ -54,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Spinner cityChoice = findViewById(R.id.cityChoice);
-        ArrayAdapter<String> cityAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, cities);
+        ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, cities);
         cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         cityChoice.setAdapter(cityAdapter);
 
@@ -73,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         cityChoice.setOnItemSelectedListener(itemSelectedListenerCity);
 
         Spinner timeChoice = findViewById(R.id.timeChoice);
-        ArrayAdapter<String> timeAdapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, times);
+        ArrayAdapter<String> timeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, times);
         timeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         timeChoice.setAdapter(timeAdapter);
 
@@ -91,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
         timeChoice.setOnItemSelectedListener(itemSelectedListenerTime);
 
-        viewWeather = (Button)findViewById(R.id.viewWeather);
+        Button viewWeather = findViewById(R.id.viewWeather);
         viewWeather.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
